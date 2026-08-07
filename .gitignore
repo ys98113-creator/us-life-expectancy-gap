@@ -1,0 +1,18 @@
+# raw downloaded source files — reconstructable by rerunning the build scripts
+county_data_cache/
+
+# Python / Jupyter artifacts
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# scaffolding from an earlier, abandoned approach
+01_build_datasets.ipynb
+Untitled.ipynb
+Untitled1.ipynb
+create_notebook.py
+bronze/
+silver/
+gold/
+
+.DS_Store
