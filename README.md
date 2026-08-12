@@ -6,7 +6,7 @@ A data science project investigating why life expectancy varies so much across U
 
 This project originally set out to compare U.S. life expectancy against other countries. That angle was dropped: cross-country life-expectancy and covariate data are too limited and inconsistent (differing survey years, definitions, and missingness across countries) to support a rigorous analysis. The project pivoted to a question with much richer data behind it: **within the United States, across all 50 states, why do some counties have life expectancies years apart from others, and how well can that gap be predicted?**
 
-This is decomposition + predictive analysis, not causal identification — there's no natural experiment here, and that's stated explicitly rather than implied.
+
 
 ![Life expectancy by U.S. county](figures/county_life_expectancy_map.png)
 
