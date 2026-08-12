@@ -8,6 +8,8 @@ This project originally set out to compare U.S. life expectancy against other co
 
 This is decomposition + predictive analysis, not causal identification — there's no natural experiment here, and that's stated explicitly rather than implied.
 
+![Life expectancy by U.S. county](figures/county_life_expectancy_map.png)
+
 ## Research question
 
 What factors are associated with differences in life expectancy across U.S. counties, and how much of a county's life expectancy can be predicted from its socioeconomic conditions, health behaviors, healthcare access, and food environment?
@@ -35,6 +37,8 @@ build_county_dataset.py              # county-level cross-section (the main data
 build_tract_dataset.py               # census-tract-level version, ~20x more rows
 build_county_panel.py                # county-year panel, real vintages kept separate rather than merged
 us_life_expectancy_gap_analysis.py   # EDA, OLS regression + diagnostics, Random Forest / XGBoost comparison
+make_readme_figures.py               # regenerates figures/*.png used in this README
+figures/                             # charts embedded above
 us_county_food_environment.csv
 us_county_panel.csv
 us_tract_food_environment.csv
@@ -66,9 +70,16 @@ Modeled three ways on the same held-out test split (20% of 2,416 counties with c
 | Random Forest | 0.612 | 1.45 |
 | XGBoost | **0.619** | **1.44** |
 
+![OLS vs. Random Forest vs. XGBoost test R²](figures/model_comparison.png)
+
 Both tree-based models outperform OLS by a meaningful margin — consistent with a Breusch-Pagan test rejecting homoscedasticity (p ≈ 1.1e-11) in the OLS fit, i.e. there's real evidence the true relationship isn't well captured by a single linear model.
 
 **Child poverty rate is the dominant predictor**, both by raw correlation with life expectancy (-0.57, the strongest of any variable) and by Random Forest feature importance (about 40% of total importance, roughly 4x the next-largest feature). Food-environment variables — fast-food density in particular — are comparatively weak predictors on their own (raw correlation of only 0.03), suggesting that in this county-level data, economic hardship carries more of the story than food access specifically.
+
+<p align="center">
+  <img src="figures/correlation_with_life_expectancy.png" width="49%" alt="Correlation of each predictor with life expectancy" />
+  <img src="figures/rf_feature_importance.png" width="49%" alt="Random Forest feature importance" />
+</p>
 
 ## Counties that outperform or underperform their profile
 
